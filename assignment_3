@@ -1,40 +1,76 @@
 #include <iostream>
 #include <memory>
-#include <forward_list>
+#include <vector>
 using namespace std;
 
 class Stack{
 public:
 Stack(){
-    list = {};
+    vector={};
 }
 
 void push(int data){
-    list.push_front(data);
+    vector.push_back(data);
+}
+
+int getSize(){
+    return vector.size();
 }
 
 void pop(){
-    if(list.empty()){
+    int size = getSize();
+    if(size==0){
         cout<<"Stack is empty"<<endl;
         return;
-        }
-    list.pop_front();
+    }
+    vector.pop_back();
 }
 
 void peek(){
-    if(list.empty()){
+    int size = getSize();
+    if(size==0){
         cout<<"Stack is empty"<<endl;
         return;
-        }
-    cout<<list.front()<<endl;
+    }
+    cout<<vector[size-1]<<endl;
 }
 
-void test(){
-    if(list.back() == ")") {
+void isEmpty(){
+    if(size==0){
+        cout<<"Stack is empty";
+    }
+    return;
+}
 
+void isBalanced(string para){
+    for(int n=0; n < para.size(); n++){
+        if(para[n] == "(") {
+            push(para[n]);
+            return;
+        }
+        else{
+            if(para[n] == ")"){
+                if(vector.empty()){
+                    cout<<"Unbalanced";
+                    return;
+                }
+                else{
+                    pop();
+                    return;
+                }
+            }
+        }
+    }
+    if(vector.empty()){
+    cout<<"Balanced";
+    return;
+    }
+    else{
+        cout<<"Unbalanced";
+        return;
     }
 }
 
 private:
-forward_list<string> list;
-}
+vector<string> vector;
+};
