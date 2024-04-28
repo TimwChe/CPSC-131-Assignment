@@ -9,7 +9,31 @@ Stack(){
     list = {};
 }
 
+void push(int data){
+    list.push_front(data);
+}
 
+void pop(){
+    if(list.empty()){
+        cout<<"Stack is empty"<<endl;
+        return;
+        }
+    list.pop_front();
+}
+
+void peek(){
+    if(list.empty()){
+        cout<<"Stack is empty"<<endl;
+        return;
+        }
+    cout<<list.front()<<endl;
+}
+
+void test(){
+    if(list.back() == ")") {
+
+    }
+}
 
 private:
 forward_list<string> list;
