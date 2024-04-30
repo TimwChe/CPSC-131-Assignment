@@ -43,29 +43,41 @@ void isEmpty(){
 }
 
 void isBalanced(string para){
+    //This will go through each character in the string para
     for(int n=0; n < para.size(); n++){
+        //it will then check for a open round bracket and 
+        //if found, will push it to the stack.
         if(para[n] == "(") {
             push(para[n]);
             return;
         }
         else{
+            //if it finds a closing round bracket,
+            //then it will check if the stack is empty
             if(para[n] == ")"){
                 if(vector.empty()){
+                    //if it is empty, then the expression is unbalnced
                     cout<<"Unbalanced";
                     return;
                 }
                 else{
+                    //if it is not empty, then it will
+                    //pop_back a open round bracket in the stack.
                     pop();
                     return;
                 }
             }
         }
     }
+    //after it is done checking the string, 
+    //then it will check the stack if it has any remaining open round bracket.
     if(vector.empty()){
+        //if it is empty, then the expression is balanced
     cout<<"Balanced";
     return;
     }
     else{
+        //if it is not, then the expression is unbalanced.
         cout<<"Unbalanced";
         return;
     }
