@@ -9,7 +9,7 @@ Stack(){
     vector={};
 }
 
-void push(int data){
+void push(string data){
     vector.push_back(data);
 }
 
