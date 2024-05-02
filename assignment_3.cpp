@@ -45,25 +45,28 @@ void isEmpty(){
 
 string isBalanced(string para){
     //This will go through each character in the string para
-    for(int n=0; n < para.size(); n++){
+    for(int n=0; n < para.length(); n++){
         //it will then check for a open round bracket and 
         //if found, it will push it to the stack.
-        if(para.find("(")) {
+        cout<<para.find("(");
+        if(para.find("(")){
+            cout<<"vow";
             int position = para.find("(");
+            cout<<position;
             push(para[position]);
             //This part will change the string by getting rid
             //of the open parathesis that has been pushed and then
             //lower the iteration number down by 1.
             para.erase(position-1, 1);
             n--;
-        }
-        else{
+            }else{
             //if it finds a closing round bracket,
             //then it will check if the stack is empty
+            cout<<"ron";
             if(para.find(")")){
                 if(stack.empty()){
                     //if it is empty, then the expression is not balanced
-                    return "Not Balanced";
+                    return "hello"; //"Not Balanced";
                 }
                 else{
                     //if it is not empty, then it will
@@ -91,6 +94,6 @@ vector<char> stack;
 
 int main(){
     Stack s;
-    s.isBalanced(")(())");
+    cout<<s.isBalanced("()");
     return 0;
 }
