@@ -47,10 +47,14 @@ string isBalanced(string para){
     //This will go through each character in the string para
     for(int n=0; n < para.size(); n++){
         //it will then check for a open round bracket and 
-        //if found, will push it to the stack.
+        //if found, it will push it to the stack.
         if(para.find("(")) {
-            push(para[n]);
-            para.erase(n);
+            int position = para.find("(");
+            push(para[position]);
+            //This part will change the string by getting rid
+            //of the open parathesis that has been pushed and then
+            //lower the iteration number down by 1.
+            para.erase(position-1, 1);
             n--;
         }
         else{
