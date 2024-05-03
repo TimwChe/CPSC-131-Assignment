@@ -4,6 +4,10 @@
 using namespace std;
 
 class Stack{
+
+private:
+vector<char> stack;
+
 public:
 Stack(){
     stack={};
@@ -42,58 +46,39 @@ void isEmpty(){
     }
     return;
 }
-
+//Professor's code
 string isBalanced(string para){
     //This will go through each character in the string para
-    for(int n=0; n < para.length(); n++){
+    for(int n = 0; n < para.size(); n++) {
         //it will then check for a open round bracket and 
         //if found, it will push it to the stack.
-        cout<<para.find("(");
-        if(para.find("(")){
-            cout<<"vow";
-            int position = para.find("(");
-            cout<<position;
-            push(para[position]);
-            //This part will change the string by getting rid
-            //of the open parathesis that has been pushed and then
-            //lower the iteration number down by 1.
-            para.erase(position-1, 1);
-            n--;
-            }else{
-            //if it finds a closing round bracket,
-            //then it will check if the stack is empty
-            cout<<"ron";
-            if(para.find(")")){
-                if(stack.empty()){
-                    //if it is empty, then the expression is not balanced
-                    return "hello"; //"Not Balanced";
-                }
-                else{
-                    //if it is not empty, then it will
-                    //pop_back a open round bracket in the stack.
-                    pop();
-                }
+        if(para[n] == '(') {
+            push(para[n]);
+        }
+        //if it finds a closing round bracket,
+        //then it will check if the stack is empty
+        else if(para[n] == ')') {
+            if(getSize() == 0) {
+                 //if it is empty, then the expression is not balanced
+                return "Not Balanced";
+            }
+            else {
+                //if it is not empty, then it will
+                //pop_back a open round bracket in the stack.
+                pop();
             }
         }
     }
-    //after it is done checking the string, 
+    //after it is done checking the string
     //then it will check the stack if it has any remaining open round bracket.
-    if(stack.empty()){
-        //if it is empty, then the expression is balanced
-    return "Balanced";
-    }
-    else{
-        //if it is not, then the expression is not balanced.
-        return "Not Balanced";
-    }
+    //if it is empty, then the expression is balanced
+    //if it is not, then the expression is not balanced.
+    return getSize() == 0 ? "Balanced" : "Not Balanced";
 }
-
-private:
-vector<char> stack;
 };
 
 int main(){
     Stack s;
-    cout<<s.isBalanced("()");
+    cout<<s.isBalanced("(())");
     return 0;
 }
